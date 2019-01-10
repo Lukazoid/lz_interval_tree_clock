@@ -6,6 +6,7 @@ description = "An Interval Tree Clock implementation"
 repository = "https://github.com/Lukazoid/lz_interval_tree_clock"
 keywords = ["Logical", "Clock", "Dynamic", "Distributed", "Causality"]
 categories = ["algorithms"]
+license = "MIT"
 edition = "2018"
 
 [dependencies]
