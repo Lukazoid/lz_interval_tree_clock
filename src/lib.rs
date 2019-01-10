@@ -35,7 +35,7 @@ enum IdTree {
 
 impl IdTree {
     pub fn normalize_in_place(&mut self) {
-        use IdTree::*;
+        use crate::IdTree::*;
 
         let replace_with = if let Tuple(left, right) = self {
             let left = Arc::make_mut(left);
@@ -59,7 +59,7 @@ impl IdTree {
     }
 
     pub fn sum(i1: &Self, i2: &IdTree) -> Result<IdTree, JoinError> {
-        use IdTree::*;
+        use crate::IdTree::*;
 
         match (i1, i2) {
             (Flag(false), i) | (i, Flag(false)) => Ok(i.clone()),
@@ -74,7 +74,7 @@ impl IdTree {
     }
 
     pub fn split(&self) -> (IdTree, IdTree) {
-        use IdTree::*;
+        use crate::IdTree::*;
 
         match self {
             Flag(false) => (Flag(false), Flag(false)),
@@ -115,7 +115,7 @@ enum EventTree {
 
 impl EventTree {
     fn lift_in_place(&mut self, amount: u64) {
-        use EventTree::*;
+        use crate::EventTree::*;
 
         match self {
             Value(ref mut value) | Tuple(ref mut value, _, _) => *value = *value + amount,
@@ -123,7 +123,7 @@ impl EventTree {
     }
 
     fn lower_in_place(&mut self, amount: u64) {
-        use EventTree::*;
+        use crate::EventTree::*;
 
         match self {
             Value(ref mut value) | Tuple(ref mut value, _, _) => *value = *value - amount,
@@ -131,7 +131,7 @@ impl EventTree {
     }
 
     fn min_normalized(&self) -> u64 {
-        use EventTree::*;
+        use crate::EventTree::*;
 
         match self {
             Value(value) | Tuple(value, _, _) => *value,
@@ -139,7 +139,7 @@ impl EventTree {
     }
 
     fn max(&self) -> u64 {
-        use EventTree::*;
+        use crate::EventTree::*;
 
         match self {
             Value(value) => *value,
@@ -148,7 +148,7 @@ impl EventTree {
     }
 
     pub fn normalize_in_place(&mut self) {
-        use EventTree::*;
+        use crate::EventTree::*;
 
         let replace_with = if let Tuple(value, left, right) = self {
             let left = Arc::make_mut(left);
@@ -229,7 +229,7 @@ impl EventTree {
     }
 
     pub fn join(e1: &Self, e2: &EventTree) -> EventTree {
-        use EventTree::*;
+        use crate::EventTree::*;
 
         match (e1, e2) {
             (Value(n1), Value(n2)) => Value(::std::cmp::max(*n1, *n2)),
