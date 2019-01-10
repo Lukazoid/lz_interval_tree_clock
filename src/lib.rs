@@ -1,17 +1,6 @@
-#[macro_use]
-extern crate failure;
-
-#[cfg(test)]
-#[macro_use]
-extern crate matches;
-
-#[macro_use]
-extern crate lazy_static;
-
-extern crate serde;
-#[macro_use]
-extern crate serde_derive;
-
+use failure::Fail;
+use lazy_static::lazy_static;
+use serde_derive::{Deserialize, Serialize};
 use std::sync::Arc;
 
 lazy_static! {
@@ -316,7 +305,8 @@ impl Stamp {
                 let (e2, c) = Stamp(
                     i.clone(),
                     EventTree::Tuple(*n, EVENT_TREE_ZERO.clone(), EVENT_TREE_ZERO.clone()),
-                ).grow();
+                )
+                .grow();
 
                 (e2, c)
             }
@@ -411,6 +401,7 @@ impl Stamp {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use matches::assert_matches;
 
     #[test]
     fn id_tree_normalize_in_place() {

@@ -2,6 +2,7 @@
 name = "lz_interval_tree_clock"
 version = "0.1.0"
 authors = ["Luke Horsley <luke.horsley@alpha9software.com>"]
+edition = "2018"
 
 [dependencies]
 failure = "0.1.3"
