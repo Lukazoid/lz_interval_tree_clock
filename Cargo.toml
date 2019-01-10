@@ -9,6 +9,9 @@ categories = ["algorithms"]
 license = "MIT"
 edition = "2018"
 
+[badges]
+travis-ci = { repository = "Lukazoid/lz_interval_tree_clock" }
+
 [dependencies]
 failure = "0.1.3"
 lazy_static = "1.2.0"
